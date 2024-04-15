@@ -93,6 +93,7 @@ NuScenes2Bag::convertDirectory(const fs::path& inDatasetPath,
     std::unique_ptr<SceneConverter> sceneConverter =
       std::make_unique<SceneConverter>(metaDataReader);
     sceneConverter->submit(sceneToken, fileProgress);
+    sceneConverter->lidarsegroot = lidarsegroot;
     SceneConverter* sceneConverterPtr = sceneConverter.get();
     sceneConverters.push_back(std::move(sceneConverter));
     boost::asio::defer(pool, [&, sceneConverterPtr]() {
@@ -137,6 +138,7 @@ NuScenes2Bag::convertDirectory(const fs::path& inDatasetPath,
   for (const auto& sceneToken : chosenSceneTokens) {
     boost::shared_ptr<SceneConverter> sceneConverter =
       boost::make_shared<SceneConverter>(SceneConverter(metaDataReader));
+    sceneConverter->lidarsegroot = lidarsegroot;
     sceneConverter->submit(sceneToken, fileProgress);
     sceneConverters.push_back(std::move(sceneConverter));
 

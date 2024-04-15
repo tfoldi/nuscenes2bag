@@ -10,7 +10,7 @@ int
 main(const int argc, const char* argv[])
 {
   try {
-    std::string dataroot;
+    std::string dataroot, lidarsegroot;
     std::string version = "v1.0-mini";
     std::string outputBagName;
     int32_t threadNumber = -1;
@@ -32,7 +32,10 @@ main(const int argc, const char* argv[])
       "out,o", value<std::string>(&outputBagName), "output bag name")(
       "jobs,j",
       value<int32_t>(&threadNumber),
-      "number of jobs (thread number)");
+      "number of jobs (thread number)")(
+      "lidarsegroot,l",
+      value<std::string>(&lidarsegroot)->required(),
+      "Path to root of lidarseg dataset containing '_lidarseg.bin' files");
     variables_map vm;
 
     desc.add(inputDesc);
@@ -44,6 +47,7 @@ main(const int argc, const char* argv[])
       std::cout << desc << '\n';
     } else {
       NuScenes2Bag converter{};
+      converter.lidarsegroot = lidarsegroot;
 
       fs::path sampleDirPath(dataroot);
 

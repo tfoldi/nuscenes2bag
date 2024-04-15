@@ -1,22 +1,23 @@
-#pragma once 
+#pragma once
 
 #include <atomic>
 
 namespace nuscenes2bag {
 
-class FileProgress {
-    public:
-        FileProgress();
+class FileProgress
+{
+public:
+  FileProgress();
 
-        void addToProcess(uint32_t toProcess);
+  void addToProcess(uint32_t toProcess);
 
-        void addToProcessed(uint32_t processed);
+  void addToProcessed(uint32_t processed);
 
-        float getProgressPercentage();
+  float getProgressPercentage();
 
-    public:
-        std::atomic<uint32_t> processedFiles;
-        std::atomic<uint32_t> toProcessFiles;
+public:
+  std::atomic<uint32_t> processedFiles;
+  std::atomic<uint32_t> toProcessFiles;
 };
 
 }

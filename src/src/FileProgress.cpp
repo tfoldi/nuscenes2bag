@@ -6,7 +6,8 @@ namespace nuscenes2bag {
 FileProgress::FileProgress()
   : processedFiles(0)
   , toProcessFiles(0)
-{}
+{
+}
 
 void
 FileProgress::addToProcess(uint32_t toProcess)
