@@ -6,6 +6,10 @@
 
 namespace nuscenes2bag {
 
-boost::optional<sensor_msgs::PointCloud2> readLidarFile(const fs::path& filePath);
+boost::optional<sensor_msgs::PointCloud2>
+readLidarFile(const fs::path& filePath);
+
+boost::optional<sensor_msgs::PointCloud2>
+readLidarFileXYZLabel(const fs::path& filePath, const fs::path& filePathLabel);
 
 }

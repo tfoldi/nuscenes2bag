@@ -19,7 +19,8 @@ namespace nuscenes2bag {
 
 SceneConverter::SceneConverter(const MetaDataProvider& metaDataProvider)
   : metaDataProvider(metaDataProvider)
-{}
+{
+}
 
 boost::optional<SampleType>
 getSampleType(const std::string& filename)
@@ -133,6 +134,16 @@ SceneConverter::convertSampleDatas(rosbag::Bag& outBag,
       // auto msg = readLidarFileXYZIR(sampleFilePath); // x,y,z,intensity,ring
 
       writeMsg(topicName, sensorName, sampleData.timeStamp, outBag, msg);
+
+      if (sampleData.isKeyFrame) {
+        topicName += "_label";
+
+        std::string labelsPath =
+          lidarsegroot + "/" + sampleData.token + "_lidarseg.bin";
+        auto msgl = readLidarFileXYZLabel(sampleFilePath, labelsPath);
+
+        writeMsg(topicName, sensorName, sampleData.timeStamp, outBag, msgl);
+      }
 
     } else if (sampleType == SampleType::RADAR) {
       auto topicName = sensorName;

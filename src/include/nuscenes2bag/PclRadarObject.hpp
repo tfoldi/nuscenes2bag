@@ -8,7 +8,8 @@
 
 namespace nuscenes2bag {
 
-struct PclRadarObject {
+struct PclRadarObject
+{
   //   FIELDS x y z dyn_prop id
   // SIZE 4 4 4 1 2
   // rcs vx vy vx_comp vy_comp
@@ -19,7 +20,7 @@ struct PclRadarObject {
   float x;
   float y;
   float z;
-//   PCL_ADD_POINT4D
+  //   PCL_ADD_POINT4D
 
   int8_t dyn_prop;
   int16_t id;
@@ -42,23 +43,19 @@ struct PclRadarObject {
 }
 
 POINT_CLOUD_REGISTER_POINT_STRUCT(
-    nuscenes2bag::PclRadarObject, 
-    (float, x, x)
-    (float, y, y)
-    (float, z, z)
-    (int8_t, dyn_prop, dyn_prop)
-    (int16_t, id, id)
-    (float, rcs, rcs)
-    (float, vx, vx)
-    (float, vy, vy)
-    (float, vx_comp, vx_comp)
-    (float, vy_comp, vy_comp)
-    (int8_t, is_quality_valid, is_quality_valid)
-    (int8_t, ambig_state, ambig_state)
-    (int8_t, x_rms, x_rms)
-    (int8_t, y_rms, y_rms)
-    (int8_t, invalid_state, invalid_state)
-    (int8_t, pdh0, pdh0)
-    (int8_t, vx_rms, vx_rms)
-    (int8_t, vy_rms, vy_rms)
-    )
+  nuscenes2bag::PclRadarObject,
+  (float, x, x)(float, y, y)(float, z, z)(int8_t, dyn_prop, dyn_prop)(
+    int16_t,
+    id,
+    id)(float, rcs, rcs)(float, vx, vx)(float, vy, vy)(float, vx_comp, vx_comp)(
+    float,
+    vy_comp,
+    vy_comp)(int8_t, is_quality_valid, is_quality_valid)(
+    int8_t,
+    ambig_state,
+    ambig_state)(int8_t, x_rms, x_rms)(int8_t, y_rms, y_rms)(
+    int8_t,
+    invalid_state,
+    invalid_state)(int8_t, pdh0, pdh0)(int8_t, vx_rms, vx_rms)(int8_t,
+                                                               vy_rms,
+                                                               vy_rms))

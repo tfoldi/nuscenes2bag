@@ -7,20 +7,21 @@
 
 #include <boost/optional.hpp>
 
-
 namespace nuscenes2bag {
 
-struct NuScenes2Bag {
+struct NuScenes2Bag
+{
 
 public:
   NuScenes2Bag();
 
-  void convertDirectory(const fs::path &inDatasetPath,
+  void convertDirectory(const fs::path& inDatasetPath,
                         const std::string& version,
-                        const fs::path &outputRosbagPath,
+                        const fs::path& outputRosbagPath,
                         int32_t threadNumber,
-                        boost::optional<int32_t> sceneNumberOpt
-                        );
+                        boost::optional<int32_t> sceneNumberOpt);
+
+  std::string lidarsegroot;
 
 private:
   std::string inDatasetPathString;
